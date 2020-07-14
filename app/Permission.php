@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends \Spatie\Permission\Models\Permission
 {
+    protected $guard_name = 'admin';
+
     public static function defaultPermissions(){
         return [
             'list-users',

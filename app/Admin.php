@@ -10,8 +10,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use Notifiable;
-    use HasRoles;
+    use Notifiable, HasRoles;
+
+    protected $guard_name = 'admin';
 
     protected $fillable = [
         'email', 'password',

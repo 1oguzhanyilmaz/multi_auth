@@ -16,7 +16,7 @@ class RoleAndPermissionTableSeeder extends Seeder
         $this->command->call('migrate:refresh');
         $this->command->warn("Data cleared");
 
-        $input_email = $this->command->ask('Enter email address ?', 'oguz@test.com');
+        $input_email = $this->command->ask('Enter email address ?', 'test@test.com');
         $user = Admin::create([
             'email' => trim($input_email),
             'password' => bcrypt('123456')
@@ -26,7 +26,7 @@ class RoleAndPermissionTableSeeder extends Seeder
 
         $permissions = Permission::defaultPermissions();
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::create(['name' => $permission,'guard_name'=>'admin']);
         }
         $this->command->info('Default Permissions added.');
 
@@ -35,7 +35,7 @@ class RoleAndPermissionTableSeeder extends Seeder
             $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User');
             $roles_array = explode(',', $input_roles);
             foreach($roles_array as $ro) {
-                $role = Role::firstOrCreate(['name' => ucfirst(trim($ro))]);
+                $role = Role::create(['name' => ucfirst(trim($ro)), 'guard_name'=>'admin']);
 
                 if( $role->name == 'Admin' ) {
                     $role->syncPermissions(Permission::all());
@@ -43,9 +43,6 @@ class RoleAndPermissionTableSeeder extends Seeder
                     $role->syncPermissions(Permission::where('name', 'LIKE', 'list_%')->get());
                 }
 
-                echo $user;
-                echo ' ### ';
-                echo $role->name;
                 $user->assignRole($role->name);
             }
         }else{

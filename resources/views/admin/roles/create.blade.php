@@ -16,7 +16,7 @@
                         <!-- email Form Input -->
                             <div class="form-group">
                                 <label for="name">Name :</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Email">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Role Name">
                                 @if ($errors->has('name'))
                                     <p class="help-block text-danger">{{ $errors->first('name') }}</p>
                                 @endif
