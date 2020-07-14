@@ -12,8 +12,10 @@ Route::group(['prefix'=>'/admin'], function (){
         Route::group(['middleware'=>'auth:admin'], function (){
             Route::get('/dashboard', 'HomeController@index')->name('dashboard');
             Route::get('/posts', 'PostController@index')->name('posts.index');
-//            Route::resource('roles', 'RoleController');
-//            Route::resource('users', 'UserController');
+            Route::get('/posts/{id}', 'PostController@show')->name('posts.show');
+            Route::get('/posts/{id}/edit', 'PostController@edit')->name('posts.edit');
+            Route::resource('roles', 'RoleController');
+            Route::resource('users', 'UserController');
         });
     });
 

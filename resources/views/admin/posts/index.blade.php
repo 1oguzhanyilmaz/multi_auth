@@ -7,14 +7,16 @@
                 <div class="card-header">Posts</div>
                 <div class="card-body">
                     <h3>Posts</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi delectus deleniti est illo ipsa optio praesentium soluta voluptate voluptatum? Accusamus autem beatae commodi harum inventore minima veniam! Quae quisquam, velit!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi delectus deleniti est illo ipsa optio praesentium soluta voluptate voluptatum? Accusamus autem beatae commodi harum inventore minima veniam! Quae quisquam, velit!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi delectus deleniti est illo ipsa optio praesentium soluta voluptate voluptatum? Accusamus autem beatae commodi harum inventore minima veniam! Quae quisquam, velit!</p>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis explicabo iste laudantium, necessitatibus nisi porro rerum sed sequi vitae voluptate. Ab asperiores delectus, dolorum est ex illum inventore saepe sit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis explicabo iste laudantium, necessitatibus nisi porro rerum sed sequi vitae voluptate. Ab asperiores delectus, dolorum est ex illum inventore saepe sit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis explicabo iste laudantium, necessitatibus nisi porro rerum sed sequi vitae voluptate. Ab asperiores delectus, dolorum est ex illum inventore saepe sit.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis explicabo iste laudantium, necessitatibus nisi porro rerum sed sequi vitae voluptate. Ab asperiores delectus, dolorum est ex illum inventore saepe sit.</p>
+                    @foreach($posts as $post)
+                        <div class="bg-light p-4 my-2 rounded-lg border">
+                            <h3>{{ $post['title'] }}</h3>
+                            <p>{{ $post['body'] }}</p>
+                            <div class="d-flex justify-content-end">
+                                <a href="{{ route('admin.posts.show', $post['id']) }}" class="btn btn-sm btn-info px-2 mx-1">Show</a>
+                                <a href="{{ route('admin.posts.edit', $post['id']) }}" class="btn btn-sm btn-info px-2 mx-1">Edit</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
